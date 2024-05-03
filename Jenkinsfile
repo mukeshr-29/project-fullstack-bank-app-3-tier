@@ -28,7 +28,7 @@ pipeline{
                 script{
                     withSonarQubeEnv('sonar-server'){
                         sh '''
-                            $SCANNER_HOME/bin/sonar_scanner -Dsonar.projectKey=3-tier-proj -Dsonar.projectName=3-tier-proj
+                            $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=3-tier-proj -Dsonar.projectName=3-tier-proj
                         '''
                     }
                 }
