@@ -20,7 +20,8 @@ pipeline{
         }
         stage('unit test'){
             steps{
-                sh 'npm test'
+                dir('/var/lib/jenkins/workspace/3-tier/app/backend/')
+                    sh 'npm test'
             }
         }
         stage('filescan using trivy'){
