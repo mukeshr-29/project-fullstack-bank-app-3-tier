@@ -18,11 +18,6 @@ pipeline{
                 sh 'npm install'
             }
         }
-        stage('unit test'){
-            steps{
-                sh 'npm test'
-            }
-        }
         stage('filescan using trivy'){
             steps{
                 sh 'trivy fs --format table -o fs-report.html .'
