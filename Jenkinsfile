@@ -51,7 +51,8 @@ pipeline{
         stage('docker build and tag'){
             steps{
                 sh 'docker build -t mukeshr29/bankapp-backend -f /var/lib/jenkins/workspace/3-tier/app/backend/Dockerfile /var/lib/jenkins/workspace/3-tier/app/backend'
-                sh ''
+                sh 'docker build -t mukeshr29/bankapp-frontend -f /var/lib/jenkins/workspace/3-tier/app/frontend/Dockerfile /var/lib/jenkins/workspace/3-tier/app/frontend'
+                sh 'docker tag postgres:15.1 mukeshr29/bankapp-database'
             }            
         }
     }
