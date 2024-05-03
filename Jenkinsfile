@@ -41,5 +41,10 @@ pipeline{
                 }
             }
         }
+        stage('docker build and tag'){
+            steps{
+                sh 'docker build -t mukeshr29/bankapp-backend -f /app/backend/Dockerfile'
+            }            
+        }
     }
 }
