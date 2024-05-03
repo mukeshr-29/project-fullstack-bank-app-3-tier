@@ -18,6 +18,13 @@ pipeline{
                 sh 'npm install'
             }
         }
+        stage('install dependency for backend'){
+            steps{
+                dir('/var/lib/jenkins/workspace/3-tier/app/backend/'){
+                    sh 'npm install'
+                }
+            }
+        }
         stage('filescan using trivy'){
             steps{
                 sh 'trivy fs --format table -o fs-report.html .'
@@ -44,6 +51,7 @@ pipeline{
         stage('docker build and tag'){
             steps{
                 sh 'docker build -t mukeshr29/bankapp-backend -f /var/lib/jenkins/workspace/3-tier/app/backend/Dockerfile .'
+                sh ''
             }            
         }
     }
