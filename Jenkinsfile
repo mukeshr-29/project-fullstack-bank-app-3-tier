@@ -43,7 +43,7 @@ pipeline{
         }
         stage('docker build and tag'){
             steps{
-                sh 'docker build -t mukeshr29/bankapp-backend -f /app/backend/Dockerfile .'
+                sh 'docker build -t mukeshr29/bankapp-backend -f /var/lib/jenkins/workspace/3-tier/app/backend/Dockerfile .'
             }            
         }
     }
