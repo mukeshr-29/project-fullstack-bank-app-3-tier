@@ -55,5 +55,23 @@ pipeline{
                 sh 'docker tag postgres:15.1 mukeshr29/bankapp-database'
             }            
         }
+        stage('trivy img scan'){
+            steps{
+                sh 'trivy image --format table -o img-report1.html mukeshr29/bankapp-backend'
+                sh 'trivy image --format table -o img-report2.html mukeshr29/bankapp-frontend'
+                sh 'trivy image --format table -o img-report3.html mukeshr29/bankapp-database'
+            }
+        }
+        stage('docker img push'){
+            steps{
+                script{
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker'){
+                        sh 'docker push mukeshr29/bankapp-backend'
+                        sh 'docker push mukeshr29/bankapp-frontend'
+                        sh 'docker push mukeshr29/bankapp-database'
+                    }
+                }
+            }
+        }
     }
 }
